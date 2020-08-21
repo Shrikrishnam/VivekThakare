@@ -1,0 +1,168 @@
+<div class="jumbotron ml-3 mr-3 lead display-4 text-center">
+    <span *ngIf="!f.id.value"> Place fitness trainer appointment.</span>
+    <span *ngIf="f.id.value"> Update appointment Details.</span>
+
+</div>
+
+<div class="container w-50 mt-5 ">
+    <div class=" p-4 card bg-light text-dark h5 shadow-lg">
+        <h3 *ngIf="!f.id.value" class="text-center text-success h2 card-title bg-dark p-4">Place an appointment</h3><br>
+        <h3 *ngIf="f.id.value" class="text-center text-success h2 card-title bg-dark p-4">Update appointment</h3><br>
+        <hr>
+        <form [formGroup]="fitnessForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="fname">Firstname</label>
+                <input type="text" autocomplete="false" autofocus formControlName="firstname" class="form-control" name="fname" placeholder="Enter firstname">
+                <small class="form-text text-danger" *ngIf="f.firstname.touched && f.firstname.errors?.required">
+                Please enter Firstname.!
+                </small>
+                <small class="form-text text-danger" *ngIf="f.firstname.touched && f.firstname.errors?.pattern">
+                     Firstname should not contain number or special characters.
+                    </small>
+            </div>
+            <div class="form-group">
+                <label for="lname">Lastname </label>
+                <input type="text" formControlName="lastname" class="form-control" name="lname" placeholder="Enter lastname">
+                <small class="form-text text-danger" *ngIf="f.lastname.touched && f.lastname.errors?.required">
+                    Please enter Firstname.!
+                    </small>
+                <small class="form-text text-danger" *ngIf="f.lastname.touched && f.lastname.errors?.pattern">
+                    Lastname should not contain number or special characters.
+                   </small>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" formControlName="age" class="form-control" name="age" placeholder="Age">
+                <small class="form-text text-danger" *ngIf="f.age.touched && f.age.errors?.required">
+                    Please enter Age.
+                    </small>
+                <small class="form-text text-danger" *ngIf="f.age.touched && f.age.errors?.ageRange">
+                    Enter the Age between 18 and 60.
+                    </small>
+            </div>
+            <div class="form-group">
+                <label for="phone">Mobile</label>
+                <input type="number" formControlName="phonenumber" class="form-control" name="phone" placeholder="Mobile">
+                <small class="form-text text-danger" *ngIf="f.phonenumber.touched && f.phonenumber.errors?.required">
+                    Please enter phone no.
+                    </small>
+                <small class="form-text text-danger" *ngIf="f.phonenumber.touched && f.phonenumber.errors?.pattern">
+                        Phone no. must be of 10 digits.
+                     </small>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" formControlName="email" class="form-control" name="email" placeholder="E-mail">
+                <small class="form-text text-danger" *ngIf="f.email.touched && f.email.errors?.required">
+                    Please enter E-mail.!
+                    </small>
+                <small class="form-text text-danger" *ngIf="f.email.touched && f.email.errors?.pattern">
+                        Please enter a valid email.
+                     </small>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" formControlName="streetaddress" class="form-control" name="address" placeholder="Enter Address">
+
+            </div><br>
+            <div class="row">
+                <div class="col-6">
+                    <label for="city">City</label>
+                    <input type="text" formControlName="city" class="form-control" name="city" placeholder="Enter City">
+                    <small class="form-text text-danger" *ngIf="f.city.touched && f.city.errors?.required">
+                        This is a required field.!
+                        </small>
+                    <small class="form-text text-danger" *ngIf="f.city.touched && f.city.errors?.pattern">
+                         number or special characters not allowed.
+                       </small>
+                </div>
+                <div class="col-6">
+                    <label for="state">State </label>
+                    <input type="text" formControlName="state" class="form-control" name="state" placeholder="Enter State">
+                    <small class="form-text text-danger" *ngIf="f.state.touched && f.state.errors?.required">
+                        This is a required field.!
+                        </small>
+                    <small class="form-text text-danger" *ngIf="f.state.touched && f.state.errors?.pattern">
+                         number or special characters not allowed.
+                       </small>
+                </div>
+
+            </div><br>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="pincode">Pincode </label>
+                        <input type="Number" formControlName="pincode" class="form-control" name="pincode" placeholder="Pincode">
+                        <small class="form-text text-danger" *ngIf="f.pincode.touched && f.pincode.errors?.required">
+                    Please enter pincode.!
+                    </small>
+                        <small class="form-text text-danger" *ngIf="f.pincode.touched && f.pincode.errors?.pattern">
+                        Pincode must be of six digits.
+                        </small>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="country">Country</label>
+                    <input type="text" formControlName="country" class="form-control" name="country" placeholder="Country">
+                    <small class="form-text text-danger" *ngIf="f.country.touched && f.country.errors?.required">
+                        This is a required field.!
+                        </small>
+                    <small class="form-text text-danger" *ngIf="f.country.touched && f.country.errors?.pattern">
+                        Number or special characters not allowed.
+                       </small>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="trainerpreference">Trainer Preference</label>
+                <select formControlName="trainerpreference" class="form-control">
+                    <option disabled> Choose Trainer</option>
+                    <option  value="male">Male Trainer</option>
+                    <option value="female">Female Trainer</option>
+                    <small class="form-text text-danger" *ngIf="f.trainerpreference.touched && f.pincode.errors?.required">
+                        This is a required field.
+                     </small>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="package">Select Package</label>
+                <select formControlName="package" class="form-control">
+                    <option disabled>Choose Package</option>
+                    <option  value="50">50 days</option>
+                    <option value="120">120 days</option>
+                    <option value="200">200 days</option>
+                    <small class="form-text text-danger" *ngIf="f.package.touched && f.package.errors?.required">
+                        This is a required field.
+                     </small>
+
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="inr">Rupees</label>
+                    <input disabled type="number" formControlName="inr" class="form-control" name="inr">
+                    <small class="form-text text-danger" *ngIf="f.inr.touched && f.inr.errors?.pattern">
+                        Only numbers are allowed.
+                     </small>
+                </div>
+                <div class=" col-6 ">
+                    <label for="paisa">Paisa</label>
+                    <input disabled type="number" formControlName="paisa" class="form-control " name="paisa">
+                    <small class="form-text text-danger " *ngIf="f.paisa.touched && f.paisa.errors?.pattern">
+                        Only numbers are allowed.
+                    </small>
+                </div>
+
+            </div>
+            <br>
+            <button *ngIf="!f.id.value" type="submit " value="Place appointment " class="btn mx-auto btn-lg btn-primary ">Place Appointment</button>
+        </form>
+        <button *ngIf="f.id.value" (click)="updateDetails() " value="Update " class="btn container btn-lg btn-success ">Update</button>
+
+    </div>
+    <br>
+
+
+</div>
